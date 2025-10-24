@@ -1,0 +1,73 @@
+:root{
+  --bg:#f4f7fb;
+  --panel:#ffffff;
+  --accent:#3b82f6;
+  --text:#111827;
+  --muted:#6b7280;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(180deg,#e6eefc,#f8fafc);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  color:var(--text);
+  padding:24px;
+}
+
+.calculator{
+  width:320px;
+  background:var(--panel);
+  border-radius:12px;
+  box-shadow:0 6px 24px rgba(16,24,40,0.08);
+  padding:18px;
+}
+
+.display{
+  width:100%;
+  height:56px;
+  border-radius:8px;
+  border:1px solid #e6eefc;
+  padding:8px 12px;
+  font-size:20px;
+  text-align:right;
+  margin-bottom:6px;
+  background:linear-gradient(180deg,#fff,#fbfdff);
+}
+
+.display + .display {
+  background: #e5e7eb;
+  color: #111827;
+  font-weight: 600;
+  margin-bottom:12px;
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+button{
+  height:48px;
+  border-radius:8px;
+  border:none;
+  background:#f3f4f6;
+  font-size:16px;
+  cursor:pointer;
+  transition:transform .08s ease, box-shadow .08s;
+}
+button:active{transform:translateY(1px)}
+button[data-action="equals"]{
+  background:var(--accent);
+  color:#fff;
+  grid-column:4;
+  grid-row:5;
+  height:100%;
+}
+button.zero{grid-column:1 / span 2}
+button[data-action="clear"]{background:#fef3f2;color:#991b1b}
