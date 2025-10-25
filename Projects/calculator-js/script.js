@@ -56,22 +56,32 @@ buttons.forEach(btn => {
   });
 });
 
-// Keyboard support
-window.addEventListener('keydown', (e) => {
-  if ((e.key >= '0' && e.key <= '9') || '+-*/().%'.includes(e.key)) {
-    currentExpression += e.key;
-    updateDisplay();
-    resultDisplay.value = '';
-  } else if (e.key === 'Enter') {
-    const sanitized = sanitizeExpression(currentExpression);
-    resultDisplay.value = calculateExpression(sanitized);
-  } else if (e.key === 'Backspace') {
-    currentExpression = currentExpression.slice(0, -1);
-    updateDisplay();
-    resultDisplay.value = '';
-  } else if (e.key.toLowerCase() === 'c') {
-    currentExpression = '';
-    updateDisplay();
-    resultDisplay.value = '';
-  }
+document.addEventListener('keydown', (e) => {
+    // Only digits, operators, and decimal
+    if ("0123456789+-*/.%".includes(e.key)) {
+        currentExpression += e.key;
+        updateDisplay();
+        resultDisplay.value = '';
+    } 
+    // Evaluate on Enter
+    else if (e.key === 'Enter') {
+        e.preventDefault(); // Prevent form submission
+        const sanitized = sanitizeExpression(currentExpression);
+        resultDisplay.value = calculateExpression(sanitized);
+    } 
+    // Delete last character
+    else if (e.key === 'Backspace') {
+        e.preventDefault(); // Prevent browser back navigation
+        currentExpression = currentExpression.slice(0, -1);
+        updateDisplay();
+        resultDisplay.value = '';
+    } 
+    // Clear using Escape key
+    else if (e.key === 'Escape') {
+        e.preventDefault();
+        currentExpression = '';
+        updateDisplay();
+        resultDisplay.value = '';
+    }
 });
+
