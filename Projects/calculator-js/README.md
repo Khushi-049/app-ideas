@@ -16,5 +16,5 @@ Simple calculator implemented with HTML, CSS and JavaScript.
 4. Input remains visible; result appears below input.
 
 ## Notes for maintainers
-- Files added under `projects/calculator-js/`
+- Files added under `Projects/calculator-js/`
 - No external dependencies
